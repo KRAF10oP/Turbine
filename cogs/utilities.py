@@ -298,7 +298,7 @@ class Utilities(commands.Cog):
         dpyVersion = discord.__version__
         serverCount = len(self.bot.guilds)
         memberCount = sum(guild.member_count for guild in self.bot.guilds)
-        revision = self.get_last_commits()
+        # revision = self.get_last_commits()
         t1 = time.perf_counter()
         await self.bot.db.fetchval("SELECT 1;")
         t2 = time.perf_counter() - t1
@@ -350,14 +350,9 @@ class Utilities(commands.Cog):
             a = f'{anshuman}'
         embed.add_field(name='Bot Developers:', value=f"{j}\n{a}")
         embed.set_author(name=f"{self.bot.user.name} Stats", icon_url=self.bot.user.display_avatar.url)
-        embed.add_field(name='Latest Changes', value=revision, inline=False)
-
-        ran = random.randint(1,2)
-
-        if ran == 1:
-            embed.set_footer(text='Made with 🤍 by Jash_2312 and Anshuman..!!', icon_url='https://images-ext-2.discordapp.net/external/9uZU0K1ngMtQgIElGm3XSqPOSxuty4T7ADJQ_kIbcpA/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/749559849460826112/cac1f6ee316353004c9e8bdce8a54b75.png')
-        else:
-            embed.set_footer(text='Made with 🤍 by Anshuman..!! and Jash_2312', icon_url='https://cdn.discordapp.com/avatars/939887303403405402/0ac574b14a954715efe8cd81196cb042.png')
+        # embed.add_field(name='Latest Changes', value=revision, inline=False)
+        
+        embed.set_footer(text='Made with 🤍 by Anshuman..!!', icon_url='https://cdn.discordapp.com/avatars/939887303403405402/0ac574b14a954715efe8cd81196cb042.png')
 
         await ctx.send(embed=embed, view=view)
 
