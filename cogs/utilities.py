@@ -340,15 +340,11 @@ class Utilities(commands.Cog):
         # embed.add_field(name='Version', value=f'Python - {pythonVersion}\nDiscordPY - {dpyVersion}', inline=False)
         jash = await self.bot.fetch_user(749559849460826112)
         anshuman = await self.bot.fetch_user(939887303403405402)
-        if jash in ctx.guild.members:
-            j = f'{jash.mention}'
-        else:
-            j = f'{jash}'
         if anshuman in ctx.guild.members:
             a = f'{anshuman.mention}'
         else:
             a = f'{anshuman}'
-        embed.add_field(name='Bot Developers:', value=f"{j}\n{a}")
+        embed.add_field(name='Bot Developer:', value=f"{a}")
         embed.set_author(name=f"{self.bot.user.name} Stats", icon_url=self.bot.user.display_avatar.url)
         # embed.add_field(name='Latest Changes', value=revision, inline=False)
         
