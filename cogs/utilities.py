@@ -315,13 +315,11 @@ class Utilities(commands.Cog):
 
         chnl_count = Counter(map(lambda ch: ch.type, self.bot.get_all_channels()))
 
-        b = Button(label='Invite Me', style=discord.ButtonStyle.link, url='https://discord.com/api/oauth2/authorize?client_id=938699822922346536&permissions=21175985838&scope=bot')
-        support = Button(label='Support Server', style=discord.ButtonStyle.link, url='https://discord.gg/WNJUBGvh4j')
+        b = Button(label='Invite Me', style=discord.ButtonStyle.link, url='https://discord.com/api/oauth2/authorize?client_id=896631647104024616&permissions=21175985838&scope=bot%20applications.commands')
         view = View()
-        view.add_item(support)
         view.add_item(b)
 
-        embed = discord.Embed(colour=discord.Color.blue())
+        embed = discord.Embed(colour=0xFF0000)
 
         # start_time = calendar.timegm(time.strptime(start_time.strftime("%Y-%m-%d %H:%M:%S+00:00"), '%Y-%m-%d %H:%M:%S+00:00'))
 
