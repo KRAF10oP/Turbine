@@ -319,7 +319,7 @@ class Utilities(commands.Cog):
         view = View()
         view.add_item(b)
 
-        embed = discord.Embed(colour=0xFF0000)
+        embed = discord.Embed(colour=0x2f3136)
 
         # start_time = calendar.timegm(time.strptime(start_time.strftime("%Y-%m-%d %H:%M:%S+00:00"), '%Y-%m-%d %H:%M:%S+00:00'))
 
