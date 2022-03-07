@@ -54,7 +54,7 @@ class PyBot(commands.AutoShardedBot):
     except:
       return None
 
-bot = PyBot(command_prefix=get_prefix, case_insensitive=True, owner_ids = set(owners), intents=intents, strip_after_prefix=True,)
+bot = PyBot(command_prefix=".", case_insensitive=True, owner_ids = set(owners), intents=intents, strip_after_prefix=True,)
 
 logging.basicConfig(level=logging.INFO)
 
