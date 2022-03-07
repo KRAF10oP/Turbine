@@ -43,7 +43,7 @@ intents = discord.Intents.all()
 
 secret_file = json.load(open(cwd+'/config/config.json'))
 
-owners = [749559849460826112, 939887303403405402]
+owners = [939887303403405402]
 
 class PyBot(commands.AutoShardedBot):
   @property
