@@ -355,7 +355,7 @@ class Events(commands.Cog):
         async def on_guild_join(self, guild):
             pdata = await self.bot.db.fetchrow('SELECT * FROM prefix WHERE guild_id = $1', guild.id)
             if not pdata:
-                return await self.bot.db.execute("INSERT INTO prefix (guild_id, prefix) VALUES ($1,$2)", guild.id, '-')
+                return await self.bot.db.execute("INSERT INTO prefix (guild_id, prefix) VALUES ($1,$2)", guild.id, '.')
 
             wdata = await self.bot.welcomer.get_by_id(guild.id)
             if not wdata or "welcomer" not in wdata:
