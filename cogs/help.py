@@ -39,13 +39,11 @@ class Help(commands.Cog):
         if not params:
             # checks if owner is on this server - used to 'tag' owner
             # starting to build embed
-            invite = Button(label='Invite Me', style=discord.ButtonStyle.link, url='https://discord.com/api/oauth2/authorize?client_id=938699822922346536&permissions=21175985838&scope=bot')
-            support = Button(label='Support Server', style=discord.ButtonStyle.link, url='https://discord.gg/WNJUBGvh4j')
+            invite = Button(label='Invite Me', style=discord.ButtonStyle.link, url='https://discord.com/api/oauth2/authorize?client_id=896631647104024616&permissions=21175985838&scope=bot%20applications.commands')
             view = View()
-            view.add_item(support)
             view.add_item(invite)
 
-            emb = discord.Embed(color=0x2097d8,
+            emb = discord.Embed(color=0xFF0000,
                                 description=f'⇛ Prefix for {ctx.guild.name} is `{PREFIX}`\n\n')
                                             # f'⇛ `{PREFIX} <command> for more information on a particular Command.`\n\n')
             ran = random.randint(1,2)
@@ -81,7 +79,7 @@ class Help(commands.Cog):
 
                     # making title - getting description from doc-string below class
                     emb = discord.Embed(title=f'{cog} ({len(self.bot.get_cog(cog).get_commands())})',
-                                        color=0x3498DB)
+                                        color=0xFF0000)
 
                     # getting commands from cog
                     for command in self.bot.get_cog(cog).get_commands():
