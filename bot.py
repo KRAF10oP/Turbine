@@ -39,7 +39,7 @@ async def get_prefix(bot, message):
     except:
         return commands.when_mentioned_or("-")(bot, message)
 
-intents = discord.Intents.all()
+intents = discord.Intents.default()
 
 secret_file = json.load(open(cwd+'/config/config.json'))
 
