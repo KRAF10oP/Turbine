@@ -64,7 +64,7 @@ class Utilities(commands.Cog):
         """
         Invite ME : )
         """
-        button = Button(label='Invite Me', style=discord.ButtonStyle.link, url='https://discord.com/api/oauth2/authorize?client_id=938699822922346536&permissions=21175985838&scope=bot' )
+        button = Button(label='Invite Me', style=discord.ButtonStyle.link, url='https://discord.com/api/oauth2/authorize?client_id=896631647104024616&permissions=21175985838&scope=bot%20applications.commands' )
         view = View()
         view.add_item(button)
         embed = discord.Embed(description='Wanna Invite me to your Server ?', color=0x3498DB)
