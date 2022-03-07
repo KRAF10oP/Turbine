@@ -43,7 +43,7 @@ class Help(commands.Cog):
             view = View()
             view.add_item(invite)
 
-            emb = discord.Embed(color=0xFF0000,
+            emb = discord.Embed(color=0x2f3136,
                                 description=f'⇛ Prefix for {ctx.guild.name} is `{PREFIX}`\n\n')
                                             # f'⇛ `{PREFIX} <command> for more information on a particular Command.`\n\n')
             ran = random.randint(1,2)
@@ -79,7 +79,7 @@ class Help(commands.Cog):
 
                     # making title - getting description from doc-string below class
                     emb = discord.Embed(title=f'{cog} ({len(self.bot.get_cog(cog).get_commands())})',
-                                        color=0xFF0000)
+                                        color=0x2f3136)
 
                     # getting commands from cog
                     for command in self.bot.get_cog(cog).get_commands():
@@ -94,7 +94,7 @@ class Help(commands.Cog):
                     if command.name.lower() == params[0].lower():
                         # print('Milgya')
                         
-                        emb = discord.Embed(title=f'{command.name.capitalize()}',description=f'> {command.help}',color=0x2097d8)
+                        emb = discord.Embed(title=f'{command.name.capitalize()}',description=f'> {command.help}',color=0x2f3136)
                         # emb.add_field(name='**Command**', value=f'```{command.name}```', inline=False)
                         # emb.add_field(name='**Description**', value=f'`{command.help}`', inline=False)
                         if command.aliases:
