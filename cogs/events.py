@@ -171,10 +171,10 @@ class Events(commands.Cog):
                     else:
                         data = await self.bot.db.fetchrow('SELECT * FROM prefix WHERE guild_id = $1', message.guild.id)
                         if not data:
-                            prefix = "-"
+                            prefix = "."
                         else:
                             prefix = data["prefix"]
-                        await message.channel.send(f"My prefix here is `{prefix}` \nI was developed by `Jash_2312` & `Anshuman..!!#5404`", delete_after=10)
+                        await message.channel.send(f"My prefix here is `{prefix}` \nI was developed by `Anshuman..!!#0006`", delete_after=10)
             await self.bot.process_commands(message)
 
         @commands.Cog.listener()
