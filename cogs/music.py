@@ -26,8 +26,8 @@ class LavalinkVoiceClient(discord.VoiceClient):
         else:
             self.client.lavalink = lavalink.Client(client.user.id)
             self.client.lavalink.add_node(
-                    'paid1.cattohost.xyz',
-                    26883,
+                    'nyc1.koalahost.xyz',
+                    9004,
                     'youshallnotpass',
                     'us',
                     'main')
