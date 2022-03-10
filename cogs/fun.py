@@ -215,7 +215,7 @@ class Fun(commands.Cog):
            img = (api.magik(avatar))
            embed.set_image(url=img.message)
            embed.set_footer(text=f'Requested by {ctx.author}')
-           return await m.edit(embed=embed)
+           return await m.edit(content=None, embed=embed)
 
 
     api.close()
