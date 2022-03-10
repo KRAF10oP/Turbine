@@ -4,7 +4,7 @@ import asyncio
 from discord.ui import Button, View
 from urllib.request import urlopen, Request
 
-class Welcomer and Autorole(commands.Cog):
+class Welcomer_and_Autorole(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
@@ -2737,4 +2737,4 @@ class Welcomer and Autorole(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Welcomer and Autorole(bot))
+    bot.add_cog(Welcomer_and_Autorole(bot))
