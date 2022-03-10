@@ -52,8 +52,6 @@ class Help(commands.Cog):
             for cog in self.bot.cogs:
                 # check if cog is the matching one
                 if cog == 'Moderation' or cog == 'Channels' or cog == 'Welcomer_and_Autorole' or cog == 'Utilities' or cog == 'Music' or cog == 'Fun':
-                    if cog == 'Welcomer_and_Autorole':
-                         cog = 'Welcomer and Autorole'
                     # making title - getting description from doc-string below class
                     com = []
                     # getting commands from cog
@@ -62,6 +60,8 @@ class Help(commands.Cog):
                         if not command.hidden:
                             com.append(f'`{command.name}`')
                     try:
+                        if cog == 'Welcomer_and_Autorole':
+                             cog = 'Welcomer and Autorole'
                         emb.add_field(name=f"{cog}", value=f"{', '.join(com)}", inline=False)
                     except:
                         pass
@@ -86,6 +86,10 @@ class Help(commands.Cog):
                     emb = discord.Embed(color=0x2f3136)
                     emb.set_author(name=f'{cog} ({len(self.bot.get_cog(cog).get_commands())})', icon_url=self.bot.user.display_avatar.url)
                     # getting commands from cog
+
+                    if cog == 'Welcomer and Autorole':
+                         cog = 'Welcomer_and_Autorole'
+
                     for command in self.bot.get_cog(cog).get_commands():
                         # if cog is not hidden
                         if not command.hidden:
