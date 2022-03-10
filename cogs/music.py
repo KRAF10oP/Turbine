@@ -315,12 +315,12 @@ class Music(commands.Cog):
             thumbnail = f"https://i.ytimg.com/vi/{s}/maxresdefault.jpg"
 
             try:
-                embed.set_image(url=thumbnail)
+                embed.set_thumbnail(url=thumbnail)
             except:
                 pass
 
             embed.title = 'Playlist Enqueued!'
-            embed.description = f'{results["playlistInfo"]["name"]} - {len(tracks)} tracks'
+            embed.description = f'Added {results["playlistInfo"]["name"]} - {len(tracks)} tracks to Queue'
         else:
             track = results['tracks'][0]
 
@@ -330,13 +330,13 @@ class Music(commands.Cog):
             thumbnail = f"https://i.ytimg.com/vi/{s}/maxresdefault.jpg"
 
             try:
-                embed.set_image(url=thumbnail)
+                embed.set_thumbnail(url=thumbnail)
             except:
                 pass
 
-            embed.title = 'Track Enqueued'
-            embed.description = f'[{track["info"]["title"]}]({track["info"]["uri"]})'
-            # embed.add_field(name="Requested By", value=f'{track["info"]["requester"]}')
+            embed.title = 'Music Queued'
+            embed.description = f'Added [{track["info"]["title"]}]({track["info"]["uri"]}) to Queue'
+            embed.add_field(name="Requested By", value=f'{str(ctx.author)}')
             # You can attach additional information to audiotracks through kwargs, however this involves
             # constructing the AudioTrack class yourself.
             track = lavalink.models.AudioTrack(track, ctx.author.id, recommended=True)
@@ -367,7 +367,7 @@ class Music(commands.Cog):
 
         await player.skip()
         
-        await ctx.send('*⃣ | Skipped !')
+        await ctx.send('Skipped current Track')
     
     @commands.command()
     async def stop(self, ctx):
@@ -400,7 +400,7 @@ class Music(commands.Cog):
         # Disconnect from the voice channel.
         await ctx.voice_client.disconnect(force=True)
 
-        await ctx.send('*⃣ | Disconnected.')
+        await ctx.send('Disconnected.')
 
 
 def setup(bot):
