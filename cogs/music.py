@@ -336,7 +336,7 @@ class Music(commands.Cog):
 
             embed.title = 'Music Queued'
             embed.description = f'Added [{track["info"]["title"]}]({track["info"]["uri"]}) to Queue'
-            embed.add_field(name="Requested By", value=f'{str(ctx.author)}')
+            embed.add_field(name="Requested By", value=f'`{str(ctx.author)}`')
             # You can attach additional information to audiotracks through kwargs, however this involves
             # constructing the AudioTrack class yourself.
             track = lavalink.models.AudioTrack(track, ctx.author.id, recommended=True)
