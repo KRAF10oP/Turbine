@@ -124,10 +124,12 @@ class Help(commands.Cog):
                             emb.add_field(name='**Example**', value=f'```{command.brief}```', inline=False)
                         else:
                             emb.add_field(name='**Example**', value=f'```Command has No Example```', inline=False)
+                        if command.cog_name == 'Welcomer_and_Autorole':
+                             emb.set_author(name="Welcomer and Autorole", icon_url=self.bot.user.display_avatar.url)
+                        else:
+                             emb.set_author(name=command.cog_name, icon_url=self.bot.user.display_avatar.url)
 
                         emb.add_field(name='\u200b', value='```yaml\n• [] = optional argument\n• <> = required argument\n• Do NOT type these when using commands!```')
-
-                        emb.set_author(name=command.cog_name, icon_url=self.bot.user.display_avatar.url)
                         break
                     else:
                         for command in self.bot.commands:
@@ -151,7 +153,11 @@ class Help(commands.Cog):
                                     else:
                                         emb.add_field(name='**Example**', value=f'```Command Has No Example```', inline=False)
 
-                                    emb.set_author(name=command.cog_name, icon_url=self.bot.user.display_avatar.url)
+                                    if command.cog_name == 'Welcomer_and_Autorole':
+                                        emb.set_author(name="Welcomer and Autorole", icon_url=self.bot.user.display_avatar.url)
+                                    else:
+                                        emb.set_author(name=command.cog_name, icon_url=self.bot.user.display_avatar.url)
+
                                     break
         # sending reply embed using our own function defined above
             await ctx.send(embed=emb)
