@@ -13,7 +13,7 @@ class Welcomer and Autorole(commands.Cog):
     async def on_ready(self):
         print("Welcomer Cog has loaded\n-------------------------")
 
-    @commands.command(name='welcomer', aliases=['setup-welcome', 'welcome', 'setup-welcomer'], usage='-welcomer')
+    @commands.command(name='set', aliases=['setup-welcome', 'welcome', 'setup-welcomer', 'welcomer'], usage='-welcomer')
     @commands.has_guild_permissions(administrator=True)
     async def welcome(self, ctx):
         """
