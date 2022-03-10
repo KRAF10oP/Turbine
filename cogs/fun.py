@@ -73,11 +73,12 @@ class Fun(commands.Cog):
         await msg.edit(view=view)
     
     @commands.command(usage='threats [member]')
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def threats(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(static_format="png").url
+        avatar = member.display_avatar.replace(format="png").url
         img = (api.threats(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -85,11 +86,12 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(usage='bauguette [member]')
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def bauguette(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(static_format="png").url
+        avatar = member.display_avatar.replace(format="png").url
         img = (api.baguette(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -98,6 +100,7 @@ class Fun(commands.Cog):
     
 
     @commands.command(usage='cylde [member] [text]')
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def clyde(self, ctx, *, text=None):
         if text is None:
             text = 'Turbine is OP'
@@ -109,11 +112,12 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)   
 
     @commands.command(usage='captcha [member]')
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def captcha(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(static_format="png").url
+        avatar = member.display_avatar.replace(format="png").url
         img = (api.captcha(avatar, f"{member.name}"))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -121,11 +125,12 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(usage='trash [member]')
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def trash(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(static_format="png").url
+        avatar = member.display_avatar.replace(format="png").url
         img = (api.trash(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -133,11 +138,12 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(usage='iphone [member]')
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def iphone(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(static_format="png").url
+        avatar = member.display_avatar.replace(format="png").url
         img = (api.iphonex(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -145,6 +151,7 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(usage='tweet [member] [text]')
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def tweet(self, ctx, member: discord.Member=None, *, text='Turbine is OP'):
         if member is None:
             member = ctx.author
@@ -156,11 +163,12 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(usage='awooify [member]')
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def awooify(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(static_format="png").url
+        avatar = member.display_avatar.replace(format="png").url
         img = (api.awooify(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -168,11 +176,12 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(usage='deepfry [member]')
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def deepfry(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(static_format="png").url
+        avatar = member.display_avatar.replace(format="png").url
         img = (api.deepfry(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -180,6 +189,7 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(usage='stickbug [member]')
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def stickbug(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
@@ -192,16 +202,20 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(usage='magik [member]')
+    @commands.cooldown(1, 5, commands.BucketType.member)
     async def magik(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(static_format="png").url
-        img = (api.magik(avatar))
-        embed = discord.Embed(color=discord.Color.blue())
-        embed.set_image(url=img.message)
-        embed.set_footer(text=f'Requested by {ctx.author}')
-        await ctx.send(embed=embed)
+        m = await ctx.send(" <a:Loadbounce:950647698640478218> Processing Command, Please Wait…")
+        async with channel.typing():
+
+           avatar = member.display_avatar.replace(size=2048, format="png").url
+           embed = discord.Embed(color=discord.Color.blue())
+           embed.set_image(url=img.message)
+           embed.set_footer(text=f'Requested by {ctx.author}')
+           return await m.edit(embed=embed)
+
 
     api.close()
 
