@@ -25,7 +25,6 @@ class memeView(View):
 
         memeEmbed = discord.Embed(title=title, color=discord.Color.blue())
         memeEmbed.set_image(url=image)
-        memeEmbed.url = 'https://discord.gg/zacxpxwhn8'
         memeEmbed.set_footer(text=f'👍 {ups}')
 
         await interaction.response.edit_message(embed=memeEmbed, view=self)
@@ -62,7 +61,6 @@ class Fun(commands.Cog):
 
         memeEmbed = discord.Embed(title=f'{title}', color=discord.Color.blue())
         memeEmbed.set_image(url=image)
-        memeEmbed.url = 'https://discord.gg/zacxpxwhn8'
         memeEmbed.set_footer(text=f'👍 {ups}')
 
         msg = await ctx.send(embed=memeEmbed, view=view)
@@ -102,7 +100,7 @@ class Fun(commands.Cog):
     @commands.command(usage='cylde [member] [text]')
     async def clyde(self, ctx, *, text=None):
         if text is None:
-            text = 'PyBot is OP'
+            text = 'Turbine is OP'
 
         img = (api.clyde(f"{text}"))
         embed = discord.Embed(color=discord.Color.blue())
@@ -147,7 +145,7 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(usage='tweet [member] [text]')
-    async def tweet(self, ctx, member: discord.Member=None, *, text='PyBot is OP'):
+    async def tweet(self, ctx, member: discord.Member=None, *, text='Turbine is OP'):
         if member is None:
             member = ctx.author
 
