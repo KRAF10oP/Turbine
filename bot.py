@@ -92,7 +92,7 @@ bot.color_list = [c for c in bot.colors.values()]
 async def on_ready():
 
     print(f"-----\nLogged in as: {bot.user.name} : {bot.user.id}\n-----\nMy current prefix is: -\n-----")
-    await bot.change_presence(activity=discord.Game(name=f"Hi, my name is {bot.user.name}.\nUse - to interact with me!"))
+    await bot.change_presence(activity=discord.Game(name=f"Waiting to Get Verified : )"))
 
     bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(bot.connection_url))
     bot.mongodb = bot.mongo["pybot"]
