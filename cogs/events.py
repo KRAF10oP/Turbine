@@ -73,7 +73,8 @@ class Events(commands.Cog):
                 if word.startswith('<@!') or word.startswith("<@"):
                     a = word
             if a:
-                a = a.replace('<@!','')
+                a = a.replace('<@','')
+                a = a.replace('!','')
                 a = a.replace('>', '')
                 a = int(a)
                 try:
