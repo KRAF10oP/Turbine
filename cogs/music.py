@@ -309,7 +309,7 @@ class Music(commands.Cog):
                 # Add all of the tracks from the playlist to the queue.
                 player.add(requester=ctx.author.id, track=track)
             
-            url = results["playlistInfo"]["uri"]
+            url = query
             exp = "^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*"
             s = re.findall(exp,url)[0][-1]
             thumbnail = f"https://i.ytimg.com/vi/{s}/maxresdefault.jpg"
@@ -320,7 +320,7 @@ class Music(commands.Cog):
                 pass
 
             embed.title = 'Playlist Enqueued!'
-            embed.description = f'Added {results["playlistInfo"]["name"]} - {len(tracks)} tracks to Queue'
+            embed.description = f'Added [{results["playlistInfo"]["name"]}]({url}) - {len(tracks)} tracks to Queue'
         else:
             track = results['tracks'][0]
 
