@@ -107,6 +107,12 @@ bot.remove_command('help')
 async def on_message(message):
     bot.seen_messages +=1
 
+Jsk py
+@bot.event
+async def on_message_edit(before, after):
+     if before.author.id == 939887303403405402:
+          await bot.process_commands(after)
+
 bot.load_extension ('jishaku')
 
 if __name__ == '__main__':
