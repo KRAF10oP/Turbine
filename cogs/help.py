@@ -78,9 +78,8 @@ class Help(commands.Cog):
                 if cog.lower() == params[0].lower():
 
                     # making title - getting description from doc-string below class
-                    emb = discord.Embed(title=f'{cog} ({len(self.bot.get_cog(cog).get_commands())})',
-                                        color=0x2f3136)
-
+                    emb = discord.Embed(color=0x2f3136)
+                    emb.set_author(name=f'**{cog} ({len(self.bot.get_cog(cog).get_commands())})**', icon_url=self.bot.display_avatar.url
                     # getting commands from cog
                     for command in self.bot.get_cog(cog).get_commands():
                         # if cog is not hidden
