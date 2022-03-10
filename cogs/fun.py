@@ -153,8 +153,6 @@ class Fun(commands.Cog):
     @commands.command(usage='tweet [text]')
     @commands.cooldown(1, 5, commands.BucketType.member)
     async def tweet(self, ctx, *, text='Turbine is OP'):
-        if member is None:
-            member = ctx.author
 
         img = (api.tweet(f"{ctx.author.name}", f"{text}"))
         embed = discord.Embed(color=discord.Color.blue())
