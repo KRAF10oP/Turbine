@@ -85,7 +85,10 @@ class Help(commands.Cog):
                     for command in self.bot.get_cog(cog).get_commands():
                         # if cog is not hidden
                         if not command.hidden:
-                            emb.add_field(name=f"`{PREFIX}{command.name}`", value=command.help, inline=False)
+                            if command.help:
+                                 emb.add_field(name=f"`{PREFIX}{command.name}`", value=command.help, inline=False)
+                            else:
+                                 emb.add_field(name=f"`{PREFIX}{command.name}`", value="\u200b", inline=False)
                     # found cog - breaking loop
                     break
     
@@ -94,9 +97,11 @@ class Help(commands.Cog):
                     if command.name.lower() == params[0].lower():
                         # print('Milgya')
                         
-                        emb = discord.Embed(title=f'{command.name.capitalize()}',description=f'> {command.help}',color=0x2f3136)
+                        emb = discord.Embed(title=f'{command.name.capitalize()}',color=0x2f3136)
                         # emb.add_field(name='**Command**', value=f'```{command.name}```', inline=False)
                         # emb.add_field(name='**Description**', value=f'`{command.help}`', inline=False)
+                        if command.help:
+                            emb.description=f'> {command.help}'
                         if command.aliases:
                             emb.add_field(name='**Aliases**', value=f"`{', '.join(sorted(command.aliases))}`", inline=False)
                         else:
@@ -120,8 +125,9 @@ class Help(commands.Cog):
                         for command in self.bot.commands:
                             for aliases in command.aliases:
                                 if aliases.lower() == params[0].lower():
-                                    emb = discord.Embed(title=f'{command.name.capitalize()}',description=f'> {command.help}',color=0x2097d8)
-
+                                    emb = discord.Embed(title=f'{command.name.capitalize()}',color=0x2097d8)
+                                    if command.help:
+                                        emb.description=f'> {command.help}'
                                     if command.aliases:
                                         emb.add_field(name='**Aliases**', value=f"`{', '.join(command.aliases)}`", inline=False)
                                     else:
