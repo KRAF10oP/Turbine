@@ -78,7 +78,7 @@ class Fun(commands.Cog):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(format="png").url
+        avatar = member.display_avatar.replace(size=2048, format="png").url
         img = (api.threats(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -91,7 +91,7 @@ class Fun(commands.Cog):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(format="png").url
+        avatar = member.display_avatar.replace(size=2048, format="png").url
         img = (api.baguette(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -117,7 +117,7 @@ class Fun(commands.Cog):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(format="png").url
+        avatar = member.display_avatar.replace(size=2048, format="png").url
         img = (api.captcha(avatar, f"{member.name}"))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -130,7 +130,7 @@ class Fun(commands.Cog):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(format="png").url
+        avatar = member.display_avatar.replace(size=2048, format="png").url
         img = (api.trash(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -143,7 +143,7 @@ class Fun(commands.Cog):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(format="png").url
+        avatar = member.display_avatar.replace(size=2048, format="png").url
         img = (api.iphonex(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -168,7 +168,7 @@ class Fun(commands.Cog):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(format="png").url
+        avatar = member.display_avatar.replace(size=2048, format="png").url
         img = (api.awooify(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -181,7 +181,7 @@ class Fun(commands.Cog):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(format="png").url
+        avatar = member.display_avatar.replace(size=2048, format="png").url
         img = (api.deepfry(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -194,7 +194,7 @@ class Fun(commands.Cog):
         if member is None:
             member = ctx.author
 
-        avatar = member.display_avatar.replace(static_format="png").url
+        avatar = member.display_avatar.replace(size=2048, format="png").url
         img = (api.stickbug(avatar))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
@@ -208,7 +208,7 @@ class Fun(commands.Cog):
             member = ctx.author
 
         m = await ctx.send(" <a:Loadbounce:950647698640478218> Processing Command, Please Wait…")
-        async with channel.typing():
+        async with ctx.channel.typing():
 
            avatar = member.display_avatar.replace(size=2048, format="png").url
            embed = discord.Embed(color=discord.Color.blue())
