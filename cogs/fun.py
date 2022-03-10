@@ -99,7 +99,7 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
     
 
-    @commands.command(usage='cylde [member] [text]')
+    @commands.command(usage='cylde [text]')
     @commands.cooldown(1, 5, commands.BucketType.member)
     async def clyde(self, ctx, *, text=None):
         if text is None:
@@ -150,13 +150,13 @@ class Fun(commands.Cog):
         embed.set_footer(text=f'Requested by {ctx.author}')
         await ctx.send(embed=embed)
     
-    @commands.command(usage='tweet [member] [text]')
+    @commands.command(usage='tweet [text]')
     @commands.cooldown(1, 5, commands.BucketType.member)
-    async def tweet(self, ctx, member: discord.Member=None, *, text='Turbine is OP'):
+    async def tweet(self, ctx, *, text='Turbine is OP'):
         if member is None:
             member = ctx.author
 
-        img = (api.tweet(f"{member.name}", f"{text}"))
+        img = (api.tweet(f"{ctx.author.name}", f"{text}"))
         embed = discord.Embed(color=discord.Color.blue())
         embed.set_image(url=img.message)
         embed.set_footer(text=f'Requested by {ctx.author}')
