@@ -70,7 +70,7 @@ class Events(commands.Cog):
             a = None
             res = message.content.split()
             for word in res:
-                if word.startswith('<@!'):
+                if word.startswith('<@!') or word.startswith("<@"):
                     a = word
             if a:
                 a = a.replace('<@!','')
