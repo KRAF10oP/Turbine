@@ -212,6 +212,7 @@ class Fun(commands.Cog):
 
            avatar = member.display_avatar.replace(size=2048, format="png").url
            embed = discord.Embed(color=discord.Color.blue())
+           img = (api.magik(avatar))
            embed.set_image(url=img.message)
            embed.set_footer(text=f'Requested by {ctx.author}')
            return await m.edit(embed=embed)
