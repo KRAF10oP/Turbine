@@ -297,7 +297,7 @@ class Utilities(commands.Cog):
         pythonVersion = platform.python_version()
         dpyVersion = discord.__version__
         serverCount = len(self.bot.guilds)
-        memberCount = sum(guild.member_count for guild in self.bot.guilds)
+        memberCount = sum(g.member_count for g in self.bot.guilds if g.member_count != None)
         # revision = self.get_last_commits()
         t1 = time.perf_counter()
         await self.bot.db.fetchval("SELECT 1;")
