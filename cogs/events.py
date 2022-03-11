@@ -20,7 +20,7 @@ class Events(commands.Cog):
              if ( not aft.channel) and player:
                    if user.guild.voice_client: 
                         await user.guild.voice_client.disconnect(force=True)
-                        await player.destroy()
+                        await player.stop()
         
         @commands.Cog.listener()
         async def on_message_delete(self, message):
