@@ -310,7 +310,7 @@ class Utilities(commands.Cog):
 
         msgs_seen = self.bot.seen_messages
         
-        total_members = sum(g.member_count for g in self.bot.guilds)
+        total_members = sum(g.member_count for g in self.bot.guilds if g.member_count != None)
         cached_members = len(self.bot.users)
 
         chnl_count = Counter(map(lambda ch: ch.type, self.bot.get_all_channels()))
