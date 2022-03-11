@@ -11,6 +11,15 @@ class Events(commands.Cog):
         @commands.Cog.listener()
         async def on_ready(self):
             print("Events Cog has been loaded\n-------------------------")
+
+        @commands.Cog.listener()
+        async def on_voice_state_update(user, bef, aft):
+             if user.id != bot.user.id: return
+             player = bot.lavalink.player_manager.get(user.guild.id)
+             if ( not aft.channel) and player:
+                   if user.guild.voice_client: 
+                        await user.guild.voice_client.disconnect(force=True)
+                        await player.destroy()
         
         @commands.Cog.listener()
         async def on_message_delete(self, message):
