@@ -186,19 +186,6 @@ class Fun(commands.Cog):
         embed.set_footer(text=f'Requested by {ctx.author}')
         await ctx.send(embed=embed)
     
-    @commands.command(usage='stickbug [member]')
-    @commands.cooldown(1, 5, commands.BucketType.member)
-    async def stickbug(self, ctx, member: discord.Member=None):
-        if member is None:
-            member = ctx.author
-
-        avatar = member.display_avatar.replace(size=2048, format="png").url
-        img = (api.stickbug(avatar))
-        embed = discord.Embed(color=discord.Color.blue())
-        embed.set_image(url=img.message)
-        embed.set_footer(text=f'Requested by {ctx.author}')
-        await ctx.send(embed=embed)
-
     @commands.command(usage='magik [member]')
     @commands.cooldown(1, 5, commands.BucketType.member)
     async def magik(self, ctx, member: discord.Member=None):
