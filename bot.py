@@ -27,17 +27,17 @@ cwd = str(cwd)
 print(f"{cwd}\n-----")
 
 async def get_prefix(bot, message):
-    if message.author.id == 749559849460826112:
+    if message.author.id == 203508587618762752:
             return commands.when_mentioned_or('')(bot, message)
     if not message.guild:
-        return commands.when_mentioned_or("-")(bot, message)
+        return commands.when_mentioned_or(".")(bot, message)
     try:
         data = await bot.db.fetchrow("SELECT * FROM prefix WHERE guild_id = $1", message.guild.id)
         if not data or "prefix" not in data:
-            return commands.when_mentioned_or("-")(bot, message)
+            return commands.when_mentioned_or(".")(bot, message)
         return commands.when_mentioned_or(data["prefix"])(bot, message)
     except:
-        return commands.when_mentioned_or("-")(bot, message)
+        return commands.when_mentioned_or(".")(bot, message)
 
 intents = discord.Intents.all()
 
