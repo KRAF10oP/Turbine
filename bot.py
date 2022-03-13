@@ -10,6 +10,7 @@ import motor.motor_asyncio
 import time
 import calendar
 import asyncpg
+import asyncio
 
 from tortoise import Tortoise
 
@@ -144,6 +145,8 @@ tortoise_cfg = {
 }
 
 tortoise_cfg["connections"]["default"]["credentials"]["ssl"] = "disable"
+
+bot.loop = asyncio.get_event_loop()
 
 async def create_db_pool():
     await Tortoise.init(config=tortoise_cfg)
