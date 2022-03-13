@@ -11,8 +11,6 @@ import time
 import calendar
 import asyncpg
 
-import asyncio
-
 from tortoise import Tortoise
 
 os.environ["SHELL"]="/bin/bash"
@@ -29,25 +27,23 @@ cwd = str(cwd)
 print(f"{cwd}\n-----")
 
 async def get_prefix(bot, message):
-    if message.author.id == 939887303403405402:
+    if message.author.id == 749559849460826112:
             return commands.when_mentioned_or('')(bot, message)
     if not message.guild:
-        return commands.when_mentioned_or(".")(bot, message)
+        return commands.when_mentioned_or("-")(bot, message)
     try:
         data = await bot.db.fetchrow("SELECT * FROM prefix WHERE guild_id = $1", message.guild.id)
         if not data or "prefix" not in data:
-            return commands.when_mentioned_or(".")(bot, message)
+            return commands.when_mentioned_or("-")(bot, message)
         return commands.when_mentioned_or(data["prefix"])(bot, message)
     except:
-        return commands.when_mentioned_or(".")(bot, message)
+        return commands.when_mentioned_or("-")(bot, message)
 
-intents = discord.Intents.default()
-intents.members = True
-intents.message_content = True
+intents = discord.Intents.all()
 
-secret_file = json.load(open(cwd+'/config/config.json'))
+secret_file = json.load(open(cwd+'config/config.json'))
 
-owners = [939887303403405402]
+owners = [939887303403405402, 203508587618762752]
 
 class PyBot(commands.AutoShardedBot):
   @property
@@ -94,7 +90,7 @@ bot.color_list = [c for c in bot.colors.values()]
 async def on_ready():
 
     print(f"-----\nLogged in as: {bot.user.name} : {bot.user.id}\n-----\nMy current prefix is: -\n-----")
-    await bot.change_presence(activity=discord.Game(name=f"Waiting to Get Verified : )"))
+    await bot.change_presence(activity=discord.Game(name=f"Hi, my name is {bot.user.name}.\nUse - to interact with me!"))
 
     bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(bot.connection_url))
     bot.mongodb = bot.mongo["pybot"]
@@ -109,18 +105,16 @@ bot.remove_command('help')
 async def on_message(message):
     bot.seen_messages +=1
 
-@bot.event
-async def on_message_edit(before, after):
-     if before.author.id == 939887303403405402:
-          await bot.process_commands(after)
-
 bot.load_extension ('jishaku')
 
 if __name__ == '__main__':
 
     for file in os.listdir(cwd+"/cogs"):
         if file.endswith(".py") and not file.startswith("_"):
-            bot.load_extension(f"cogs.{file[:-3]}")
+            try:
+                bot.load_extension(f"cogs.{file[:-3]}")
+            except:
+                pass
 
 postgres_database_url = secret_file.get("psql_uri")
 
