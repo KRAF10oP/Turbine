@@ -11,6 +11,8 @@ import time
 import calendar
 import asyncpg
 
+import asyncio
+
 from tortoise import Tortoise
 
 os.environ["SHELL"]="/bin/bash"
@@ -102,6 +104,8 @@ async def on_ready():
     print("-------------------------\nInitialized Database\n-------------------------")
 
 bot.remove_command('help')
+
+bot.loop = asyncio.get_event_loop()
 
 @bot.event
 async def on_message(message):
