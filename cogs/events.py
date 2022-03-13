@@ -37,9 +37,6 @@ class Events(commands.Cog):
         async def on_message(self, message):
             if message.author.id == self.bot.user.id:
                 return
-
-            if await B_Data.get_or_none(user_id=message.author.id):
-                return
             
             record = await self.bot.db.fetchrow('SELECT * FROM afk WHERE (guild_id,user_id) = ($1,$2)', 0, message.author.id)
             if record and message.content.startswith('#'):
