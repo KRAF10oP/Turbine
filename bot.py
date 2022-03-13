@@ -89,7 +89,6 @@ bot.colors = {
   'DARK_NAVY': 0x2C3E50
 }
 bot.color_list = [c for c in bot.colors.values()]
-@bot.event
 
 postgres_database_url = secret_file.get("psql_uri")
 
@@ -114,6 +113,7 @@ tortoise_cfg["connections"]["default"]["credentials"]["ssl"] = "disable"
 
 bot.loop = asyncio.get_event_loop()
 
+@bot.event
 async def on_ready():
 
     print(f"-----\nLogged in as: {bot.user.name} : {bot.user.id}\n-----\nMy current prefix is: -\n-----")
