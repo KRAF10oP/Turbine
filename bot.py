@@ -108,7 +108,7 @@ async def on_message(message):
     bot.seen_messages +=1
 
 @bot.event
- async def on_message_edit(before, after):
+async def on_message_edit(before, after):
       if before.author.id == 203508587618762752:
            await bot.process_commands(after)
 
