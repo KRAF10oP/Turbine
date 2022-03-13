@@ -23,7 +23,7 @@ class Events(commands.Cog):
                         await player.stop()
        
         @commands.Cog.listener()
-        async def on_message(m):
+        async def on_message(self, m):
              await self.bot.process_commands(m)
         
 
