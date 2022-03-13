@@ -90,40 +90,6 @@ bot.colors = {
 }
 bot.color_list = [c for c in bot.colors.values()]
 @bot.event
-async def on_ready():
-
-    print(f"-----\nLogged in as: {bot.user.name} : {bot.user.id}\n-----\nMy current prefix is: -\n-----")
-    await bot.change_presence(activity=discord.Game(name=f"Waiting to Get Verified : )"))
-
-    bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(bot.connection_url))
-    bot.mongodb = bot.mongo["pybot"]
-    bot.welcomer = Document(bot.mongodb, "welcomer")
-
-    
-    print("-------------------------\nInitialized Database\n-------------------------")
-
-bot.remove_command('help')
-
-@bot.event
-async def on_message(message):
-    bot.seen_messages +=1
-
-@bot.event
-async def on_message_edit(before, after):
-      if before.author.id == 203508587618762752:
-           await bot.process_commands(after)
-
-
-bot.load_extension ('jishaku')
-
-if __name__ == '__main__':
-
-    for file in os.listdir(cwd+"/cogs"):
-        if file.endswith(".py") and not file.startswith("_"):
-            try:
-                bot.load_extension(f"cogs.{file[:-3]}")
-            except:
-                pass
 
 postgres_database_url = secret_file.get("psql_uri")
 
@@ -148,11 +114,45 @@ tortoise_cfg["connections"]["default"]["credentials"]["ssl"] = "disable"
 
 bot.loop = asyncio.get_event_loop()
 
-async def create_db_pool():
-    await Tortoise.init(config=tortoise_cfg)
-    await Tortoise.generate_schemas(safe=True)
-    print('-------------------------\nConnected to DataBase\n-------------------------')
+async def on_ready():
 
-bot.loop.run_until_complete(create_db_pool())
+    print(f"-----\nLogged in as: {bot.user.name} : {bot.user.id}\n-----\nMy current prefix is: -\n-----")
+    await bot.change_presence(activity=discord.Game(name=f"Waiting to Get Verified : )"))
+
+    bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(bot.connection_url))
+    bot.mongodb = bot.mongo["pybot"]
+    bot.welcomer = Document(bot.mongodb, "welcomer")
+
+    
+    print("-------------------------\nInitialized Database\n-------------------------")
+
+    self.session = aiohttp.ClientSession(loop=self.loop)
+        await Tortoise.init(cfg.TORTOISE)
+
+        print("Database: Connection Established.")
+        await Tortoise.generate_schemas(safe=True)
+
+bot.remove_command('help')
+
+@bot.event
+async def on_message(message):
+    bot.seen_messages +=1
+
+@bot.event
+async def on_message_edit(before, after):
+      if before.author.id == 203508587618762752:
+           await bot.process_commands(after)
+
+
+bot.load_extension ('jishaku')
+
+if __name__ == '__main__':
+
+    for file in os.listdir(cwd+"/cogs"):
+        if file.endswith(".py") and not file.startswith("_"):
+            try:
+                bot.load_extension(f"cogs.{file[:-3]}")
+            except:
+                pass
 
 bot.run(bot.config_token)
