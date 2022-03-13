@@ -39,9 +39,11 @@ async def get_prefix(bot, message):
     except:
         return commands.when_mentioned_or(".")(bot, message)
 
-intents = discord.Intents.all()
+intents = discord.Intents.default()
+ intents.members = True
+ intents.message_content = True
 
-secret_file = json.load(open(cwd+'config/config.json'))
+secret_file = json.load(open(cwd+'/config/config.json'))
 
 owners = [939887303403405402, 203508587618762752]
 
@@ -90,7 +92,7 @@ bot.color_list = [c for c in bot.colors.values()]
 async def on_ready():
 
     print(f"-----\nLogged in as: {bot.user.name} : {bot.user.id}\n-----\nMy current prefix is: -\n-----")
-    await bot.change_presence(activity=discord.Game(name=f"Hi, my name is {bot.user.name}.\nUse - to interact with me!"))
+    await bot.change_presence(activity=discord.Game(name=f"Waiting to Get Verified : )"))
 
     bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(bot.connection_url))
     bot.mongodb = bot.mongo["pybot"]
@@ -104,6 +106,12 @@ bot.remove_command('help')
 @bot.event
 async def on_message(message):
     bot.seen_messages +=1
+
+@bot.event
+ async def on_message_edit(before, after):
+      if before.author.id == 939887303403405402:
+           await bot.process_commands(after)
+
 
 bot.load_extension ('jishaku')
 
