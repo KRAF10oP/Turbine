@@ -10,7 +10,6 @@ import motor.motor_asyncio
 import time
 import calendar
 import asyncpg
-import asyncio
 
 from tortoise import Tortoise
 
@@ -28,7 +27,7 @@ cwd = str(cwd)
 print(f"{cwd}\n-----")
 
 async def get_prefix(bot, message):
-    if message.author.id == 939887303403405402 or message.author.id == 203508587618762752:
+    if message.author.id == 939887303403405402:
             return commands.when_mentioned_or('')(bot, message)
     if not message.guild:
         return commands.when_mentioned_or(".")(bot, message)
@@ -46,7 +45,7 @@ intents.message_content = True
 
 secret_file = json.load(open(cwd+'/config/config.json'))
 
-owners = [939887303403405402, 203508587618762752]
+owners = [939887303403405402]
 
 class PyBot(commands.AutoShardedBot):
   @property
@@ -89,6 +88,37 @@ bot.colors = {
   'DARK_NAVY': 0x2C3E50
 }
 bot.color_list = [c for c in bot.colors.values()]
+@bot.event
+async def on_ready():
+
+    print(f"-----\nLogged in as: {bot.user.name} : {bot.user.id}\n-----\nMy current prefix is: -\n-----")
+    await bot.change_presence(activity=discord.Game(name=f"Waiting to Get Verified : )"))
+
+    bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(bot.connection_url))
+    bot.mongodb = bot.mongo["pybot"]
+    bot.welcomer = Document(bot.mongodb, "welcomer")
+
+    
+    print("-------------------------\nInitialized Database\n-------------------------")
+
+bot.remove_command('help')
+
+@bot.event
+async def on_message(message):
+    bot.seen_messages +=1
+
+@bot.event
+async def on_message_edit(before, after):
+     if before.author.id == 939887303403405402:
+          await bot.process_commands(after)
+
+bot.load_extension ('jishaku')
+
+if __name__ == '__main__':
+
+    for file in os.listdir(cwd+"/cogs"):
+        if file.endswith(".py") and not file.startswith("_"):
+            bot.load_extension(f"cogs.{file[:-3]}")
 
 postgres_database_url = secret_file.get("psql_uri")
 
@@ -111,49 +141,13 @@ tortoise_cfg = {
 
 tortoise_cfg["connections"]["default"]["credentials"]["ssl"] = "disable"
 
-@bot.event
-async def on_ready():
-
-    print(f"-----\nLogged in as: {bot.user.name} : {bot.user.id}\n-----\nMy current prefix is: -\n-----")
-    await bot.change_presence(activity=discord.Game(name=f"Waiting to Get Verified : )"))
-
-    bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(bot.connection_url))
-    bot.mongodb = bot.mongo["pybot"]
-    bot.welcomer = Document(bot.mongodb, "welcomer")
-    
-    await Tortoise.init(config=tortoise_cfg)
-    await Tortoise.generate_schemas(safe=True)
-    print('-------------------------\nConnected to DataBase\n-------------------------')
-
-    
-    print("-------------------------\nInitialized Database\n-------------------------")
-
-bot.remove_command('help')
-
-bot.loop = asyncio.get_event_loop()
-
-@bot.event
-async def on_message(message):
-    bot.seen_messages +=1
-
-@bot.event
-async def on_message_edit(before, after):
-     if before.author.id == 939887303403405402 or before.author.id == 203508587618762752:
-          await bot.process_commands(after)
-
-bot.load_extension ('jishaku')
-
-if __name__ == '__main__':
-
-    for file in os.listdir(cwd+"/cogs"):
-        if file.endswith(".py") and not file.startswith("_"):
-            bot.load_extension(f"cogs.{file[:-3]}")
-
 async def create_db_pool():
     await Tortoise.init(config=tortoise_cfg)
     await Tortoise.generate_schemas(safe=True)
     print('-------------------------\nConnected to DataBase\n-------------------------')
 
-# bot.loop.run_until_complete(create_db_pool())
+bot.loop.run_until_complete(create_db_pool())
+
+bot.loop.close()
 
 bot.run(bot.config_token)
