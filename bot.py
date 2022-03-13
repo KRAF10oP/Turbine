@@ -27,7 +27,7 @@ cwd = str(cwd)
 print(f"{cwd}\n-----")
 
 async def get_prefix(bot, message):
-    if message.author.id == 939887303403405402:
+    if message.author.id == 939887303403405402 or message.author.id == 203508587618762752:
             return commands.when_mentioned_or('')(bot, message)
     if not message.guild:
         return commands.when_mentioned_or(".")(bot, message)
@@ -45,7 +45,7 @@ intents.message_content = True
 
 secret_file = json.load(open(cwd+'/config/config.json'))
 
-owners = [939887303403405402]
+owners = [939887303403405402, 203508587618762752]
 
 class PyBot(commands.AutoShardedBot):
   @property
@@ -109,7 +109,7 @@ async def on_message(message):
 
 @bot.event
 async def on_message_edit(before, after):
-     if before.author.id == 939887303403405402:
+     if before.author.id == 939887303403405402 or before.author.id == 203508587618762752:
           await bot.process_commands(after)
 
 bot.load_extension ('jishaku')
