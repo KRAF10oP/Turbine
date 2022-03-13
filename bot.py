@@ -149,6 +149,6 @@ async def create_db_pool():
     await Tortoise.generate_schemas(safe=True)
     print('-------------------------\nConnected to DataBase\n-------------------------')
 
-bot.loop.run_until_complete(create_db_pool())
+# bot.loop.run_until_complete(create_db_pool())
 
 bot.run(bot.config_token)
