@@ -89,6 +89,28 @@ bot.colors = {
   'DARK_NAVY': 0x2C3E50
 }
 bot.color_list = [c for c in bot.colors.values()]
+
+postgres_database_url = secret_file.get("psql_uri")
+
+
+from tortoise.backends.base.config_generator import expand_db_url
+
+
+tortoise_cfg = {
+  "connections": {
+    "default": expand_db_url(postgres_database_url),
+  },
+  "apps": {
+    "default": {
+      "models": [
+        "models"
+      ]
+    }
+  }
+}
+
+tortoise_cfg["connections"]["default"]["credentials"]["ssl"] = "disable"
+
 @bot.event
 async def on_ready():
 
@@ -98,6 +120,10 @@ async def on_ready():
     bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(bot.connection_url))
     bot.mongodb = bot.mongo["pybot"]
     bot.welcomer = Document(bot.mongodb, "welcomer")
+    
+    await Tortoise.init(config=tortoise_cfg)
+    await Tortoise.generate_schemas(safe=True)
+    print('-------------------------\nConnected to DataBase\n-------------------------')
 
     
     print("-------------------------\nInitialized Database\n-------------------------")
@@ -122,27 +148,6 @@ if __name__ == '__main__':
     for file in os.listdir(cwd+"/cogs"):
         if file.endswith(".py") and not file.startswith("_"):
             bot.load_extension(f"cogs.{file[:-3]}")
-
-postgres_database_url = secret_file.get("psql_uri")
-
-
-from tortoise.backends.base.config_generator import expand_db_url
-
-
-tortoise_cfg = {
-  "connections": {
-    "default": expand_db_url(postgres_database_url),
-  },
-  "apps": {
-    "default": {
-      "models": [
-        "models"
-      ]
-    }
-  }
-}
-
-tortoise_cfg["connections"]["default"]["credentials"]["ssl"] = "disable"
 
 async def create_db_pool():
     await Tortoise.init(config=tortoise_cfg)
