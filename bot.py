@@ -152,6 +152,4 @@ async def create_db_pool():
 
 bot.loop.run_until_complete(create_db_pool())
 
-bot.loop.close()
-
 bot.run(bot.config_token)
