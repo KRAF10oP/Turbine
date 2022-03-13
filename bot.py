@@ -127,10 +127,10 @@ async def on_ready():
     print("-------------------------\nInitialized Database\n-------------------------")
 
     self.session = aiohttp.ClientSession(loop=self.loop)
-        await Tortoise.init(cfg.TORTOISE)
+    await Tortoise.init(cfg.TORTOISE)
 
-        print("Database: Connection Established.")
-        await Tortoise.generate_schemas(safe=True)
+    print("Database: Connection Established.")
+    await Tortoise.generate_schemas(safe=True)
 
 bot.remove_command('help')
 
