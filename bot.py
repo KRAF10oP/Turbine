@@ -40,8 +40,8 @@ async def get_prefix(bot, message):
         return commands.when_mentioned_or(".")(bot, message)
 
 intents = discord.Intents.default()
- intents.members = True
- intents.message_content = True
+intents.members = True
+intents.message_content = True
 
 secret_file = json.load(open(cwd+'/config/config.json'))
 
@@ -109,7 +109,7 @@ async def on_message(message):
 
 @bot.event
  async def on_message_edit(before, after):
-      if before.author.id == 939887303403405402:
+      if before.author.id == 203508587618762752:
            await bot.process_commands(after)
 
 
