@@ -105,8 +105,6 @@ async def on_ready():
 
 bot.remove_command('help')
 
-bot.loop = asyncio.get_event_loop()
-
 @bot.event
 async def on_message(message):
     bot.seen_messages +=1
