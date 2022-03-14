@@ -1,7 +1,7 @@
 async_property==0.2.1
 asyncpg
 tortoise-orm
-discord.py @ git+https://github.com/Rapptz/discord.py.git@master ; python_full_version >= "3.8.0"
+discord.py @ git+https://github.com/Rapptz/discord.py.git@5741ad93682eda38f318b6d6c52d49e28f594134 ; python_full_version >= "3.8.0"
 jishaku
 motor==2.5.1
 pymongo==3.12.3
