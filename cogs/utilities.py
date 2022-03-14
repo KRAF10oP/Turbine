@@ -204,7 +204,15 @@ class Utilities(commands.Cog):
             pass
         emb.set_footer(text=f'Requested By {ctx.author}', icon_url=ctx.author.display_avatar.url)
         
-        if member.id == ctx.guild.owner_id:
+        if member.id == 548163406537162782:
+            ach = "Quotient Bot Developer"
+        elif member.id == 380697024120487939:
+            ach = "Flantic Bot Developer"
+        elif member.id == 939887303403405402:
+            ach = "My Developer"
+        elif member.id == 741614468546560092:
+            ach = "Parrot Bot Developer"
+        elif member.id == ctx.guild.owner_id:
             ach = 'Server Owner'
         elif member.guild_permissions.administrator:
             ach = 'Server Admin'
